@@ -10,6 +10,10 @@ import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
 
+// DATA IMPORTS
+import User from "./models/User.js";
+import { dataUser } from './data/index.js'
+
 /* CONFIGURATION */
 dotenv.config();
 const app = express();
@@ -35,6 +39,9 @@ const startServer = async () => {
     try {
         connectDB(MONGO_URL);
         app.listen(PORT, () => console.log(`Server Running on PORT - ${PORT}`));
+        // DUMMY DATA INTO DATABASE - ONLY ADD DATA ONE TIME
+        // User.insertMany(dataUser)
+
     } catch (error) {
         console.log(`Server Not Running.Solve the Error: ${error}`);
     }
